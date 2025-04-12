@@ -1,6 +1,5 @@
 "use client";
 
-import { formatDistanceToNow } from "date-fns";
 import { useStore } from "@/lib/store";
 import { StoryItem } from "@/components/story-item";
 import { motion, AnimatePresence } from "framer-motion";
