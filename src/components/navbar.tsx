@@ -32,10 +32,11 @@ const navigation = [
 
 export function Navbar() {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const { searchQuery, setSearchQuery } = useStore();
 
-  const debouncedSetSearchQuery = useDebounce((value: string) => {
+  const debouncedSetSearchQuery = useDebounce((...args: unknown[]) => {
+    const value = args[0] as string;
     setSearchQuery(value);
   }, 300);
 
