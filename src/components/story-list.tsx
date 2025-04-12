@@ -68,7 +68,7 @@ export function StoryList({ type }: StoryListProps) {
   if (filteredStories.length === 0) {
     return (
       <div className="rounded-lg border p-4 text-muted-foreground">
-        No stories found matching "{searchQuery}"
+        No stories found matching &ldquo;{searchQuery}&rdquo;
       </div>
     );
   }
@@ -95,7 +95,7 @@ export function StoryList({ type }: StoryListProps) {
             <PaginationItem>
               <PaginationPrevious
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
+                className={page === 1 ? "pointer-events-none opacity-50" : ""}
               />
             </PaginationItem>
             {[...Array(totalPages)].map((_, i) => (
@@ -111,7 +111,7 @@ export function StoryList({ type }: StoryListProps) {
             <PaginationItem>
               <PaginationNext
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
+                className={page === totalPages ? "pointer-events-none opacity-50" : ""}
               />
             </PaginationItem>
           </PaginationContent>
