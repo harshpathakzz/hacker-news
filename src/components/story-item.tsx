@@ -23,8 +23,8 @@ export function StoryItem({ story }: StoryItemProps) {
           url: story.url,
         });
         toast.success("Story shared successfully!");
-      } catch (err) {
-        if (err.name !== "AbortError") {
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name !== "AbortError") {
           handleCopyLink();
         }
       }
@@ -37,8 +37,9 @@ export function StoryItem({ story }: StoryItemProps) {
     try {
       await navigator.clipboard.writeText(story.url);
       toast.success("Link copied to clipboard!");
-    } catch (err) {
-      toast.error("Failed to copy link");
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      toast.error(`Failed to copy link: ${errorMessage}`);
     }
   };
 
